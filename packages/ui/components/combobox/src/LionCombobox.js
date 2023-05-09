@@ -1143,11 +1143,12 @@ export class LionCombobox extends LocalizeMixin(OverlayMixin(LionListbox)) {
 
     this._comboboxNode.setAttribute('role', 'combobox');
     this._comboboxNode.setAttribute('aria-haspopup', 'listbox');
+
     this._inputNode.setAttribute('aria-autocomplete', this.autocomplete);
+    this._comboboxNode.setAttribute('aria-controls', this._listboxNode.id);
 
     if (this._ariaVersion === '1.1') {
       this._comboboxNode.setAttribute('aria-owns', this._listboxNode.id);
-      this._inputNode.setAttribute('aria-controls', this._listboxNode.id);
     } else {
       this._inputNode.setAttribute('aria-owns', this._listboxNode.id);
     }
