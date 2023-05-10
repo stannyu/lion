@@ -56,7 +56,8 @@ export class CustomCollapsible extends LionCollapsible {
     contentNode.style.setProperty('opacity', '1');
     contentNode.style.setProperty('padding', '12px 0');
     contentNode.style.setProperty('max-height', '0px');
-    await new Promise(resolve => requestAnimationFrame(() => resolve()));
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise(resolve => requestAnimationFrame(() => resolve(undefined)));
     contentNode.style.setProperty('max-height', expectedHeight);
     await this._waitForTransition({ contentNode });
   }
@@ -105,7 +106,8 @@ export class CustomCollapsible extends LionCollapsible {
    */
   async __calculateHeight(contentNode) {
     contentNode.style.setProperty('max-height', '');
-    await new Promise(resolve => requestAnimationFrame(() => resolve()));
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise(resolve => requestAnimationFrame(() => resolve(undefined)));
     return this._contentHeight; // Expected height i.e. actual size once collapsed after animation
   }
 }

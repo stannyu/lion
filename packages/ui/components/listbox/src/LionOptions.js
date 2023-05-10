@@ -7,10 +7,6 @@ import { FormRegistrarPortalMixin } from '@lion/ui/form-core.js';
 export class LionOptions extends FormRegistrarPortalMixin(LitElement) {
   static get properties() {
     return {
-      role: {
-        type: String,
-        reflect: true,
-      },
       tabIndex: {
         type: Number,
         reflect: true,
@@ -23,6 +19,11 @@ export class LionOptions extends FormRegistrarPortalMixin(LitElement) {
     super();
     this.role = 'listbox';
     this.tabIndex = 0;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute('role', 'listbox');
   }
 
   createRenderRoot() {
