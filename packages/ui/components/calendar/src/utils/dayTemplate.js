@@ -57,20 +57,14 @@ export function dayTemplate(day, { weekdays, monthsLabels = defaultMonthLabels }
       ?start-of-last-week=${startOfLastWeek}
       ?last-day=${lastDay}
     >
-      <button
+      <div
+        role="button"
         .date=${day.date}
         class="calendar__day-button"
-        tabindex=${ifDefined(Number(day.tabindex))}
-        aria-label=${`${dayNumber} ${monthName} ${year} ${weekdayName}`}
-        aria-pressed=${
-          /** @type {'true'|'false'|'mixed'|'undefined'} */ (ifDefined(day.ariaPressed))
-        }
-        aria-current=${
-          /** @type {'page'|'step'|'location'|'date'|'time'|'true'|'false'} */ (
-            ifDefined(day.ariaCurrent)
-          )
-        }
-        ?disabled=${day.disabled}
+        tabindex=${ifDefined(day.tabindex)}
+        aria-pressed=${ifDefined(day.ariaPressed)}
+        aria-current=${ifDefined(day.ariaCurrent)}
+        aria-disabled=${day.disabled ? 'true' : 'false'}
         ?selected=${day.selected}
         ?past=${day.past}
         ?today=${day.today}
@@ -79,8 +73,9 @@ export function dayTemplate(day, { weekdays, monthsLabels = defaultMonthLabels }
         ?current-month=${day.currentMonth}
         ?next-month=${day.nextMonth}
       >
-        <span class="calendar__day-button__text"> ${day.date.getDate()} </span>
-      </button>
+        <span class="calendar__day-button__text">${dayNumber}</span>
+        <span class="u-sr-only">${`${monthName} ${year} ${weekdayName}`}</span>
+      </div>
     </td>
   `;
 }
